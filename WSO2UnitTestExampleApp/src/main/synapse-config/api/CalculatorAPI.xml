@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/calculator" name="CalculatorAPI" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" uri-template="/add/{number1}/{number2}">
+        <inSequence>
+            <!-- Build Request -->
+            <sequence description="Validating the input data" key="UnitTestExample_Validation_Sequence"/>
+            <filter regex="FAILURE" source="get-property('VALIDATION_RESULT')">
+                <then>
+                    <sequence key="UnitTestExample_BuildFailureResponse_Sequence"/>
+                </then>
+                <else>
+                    <sequence key="UnitTestExample_BuildRequestPayload_Sequence"/>
+                    <!-- Send to Service -->
+                    <sequence key="UnitTestExample_SendRequest_Sequence"/>
+                    <sequence key="UnitTestExample_BuildResponsePayload_Sequence"/>
+                    <!-- build response payload -->
+                </else>
+            </filter>
+            <log level="full">
+                <property expression="$ctx:VALIDATION_RESULT" name="ValidationResult"/>
+            </log>
+            <!-- Check if it was a failure - build error payload -->
+            <!-- Else build request payload and send it -->
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

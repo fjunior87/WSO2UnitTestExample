@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="UnitTestExample_BuildRequestPayload_Sequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <payloadFactory media-type="xml">
+        <format>
+            <Add xmlns="http://tempuri.org/">
+                <intA>$1</intA>
+                <intB>$2</intB>
+            </Add>
+        </format>
+        <args>
+            <arg evaluator="xml" expression="$ctx:number1_value"/>
+            <arg evaluator="xml" expression="$ctx:number2_value"/>
+        </args>
+    </payloadFactory>
+</sequence>

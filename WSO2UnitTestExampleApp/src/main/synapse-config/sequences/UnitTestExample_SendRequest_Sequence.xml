@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="UnitTestExample_SendRequest_Sequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <call description="Send Request to the Calculator Service">
+        <endpoint key="SOAPCalculator_EP"/>
+    </call>
+</sequence>

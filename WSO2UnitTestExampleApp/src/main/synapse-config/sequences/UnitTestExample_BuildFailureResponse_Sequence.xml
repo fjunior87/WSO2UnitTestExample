@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="UnitTestExample_BuildFailureResponse_Sequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <payloadFactory media-type="json">
+        <format>
+        	{
+        		"errorMessage": "$1"
+        	}
+        </format>
+        <args>
+            <arg evaluator="xml" expression="$ctx:VAL_ERROR_MESSAGE"/>
+        </args>
+    </payloadFactory>
+</sequence>

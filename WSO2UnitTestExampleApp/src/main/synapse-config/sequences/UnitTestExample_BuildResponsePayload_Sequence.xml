@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="UnitTestExample_BuildResponsePayload_Sequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <payloadFactory media-type="json">
+        <format>{
+				"result": $1
+			}
+		</format>
+        <args>
+            <arg evaluator="xml" expression="//tmp:AddResult/text()" xmlns:tmp="http://tempuri.org/"/>
+        </args>
+    </payloadFactory>
+</sequence>

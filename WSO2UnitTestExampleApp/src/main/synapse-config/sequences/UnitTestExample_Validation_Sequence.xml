@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="UnitTestExample_Validation_Sequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property description="Get Number1 Value" expression="$ctx:uri.var.number1" name="number1_value" scope="default" type="STRING"/>
+    <property description="Get Number2 value" expression="$ctx:uri.var.number2" name="number2_value" scope="default" type="STRING"/>
+    <property name="VALIDATION_RESULT" scope="default" type="STRING" value="SUCCESS"/>
+    <filter regex="NaN" source="string(number($ctx:number1_value))">
+        <then>
+            <property name="VALIDATION_RESULT" scope="default" type="STRING" value="FAILURE"/>
+            <property name="VAL_ERROR_MESSAGE" scope="default" type="STRING" value="number1 parameter is not a number"/>
+        </then>
+        <else/>
+    </filter>
+    <filter regex="NaN" source="string(number($ctx:number2_value))">
+        <then>
+            <property name="VALIDATION_RESULT" scope="default" type="STRING" value="FAILURE"/>
+            <property name="VAL_ERROR_MESSAGE" scope="default" type="STRING" value="number2 parameter is not a number"/>
+        </then>
+        <else/>
+    </filter>
+</sequence>

@@ -1,0 +1,340 @@
+{
+	"info": {
+		"_postman_id": "20a977fa-17fe-4171-9f59-ba70e3b7aedc",
+		"name": "UnitTestExample",
+		"description": "Collection of requests as examples for the unit test project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ValidationSequenceTest_Success",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2a08ae29-eb48-4350-b54a-2d0dc373e672",
+						"exec": [
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"VALIDATION_RESULT is SUCCESS\", function () {\r",
+							"    json = pm.response.json();\r",
+							"    var prop = json.properties.find(prop => prop.name == 'VALIDATION_RESULT' && prop.scope == 'default');\r",
+							"    pm.expect(prop.value).to.equal(\"SUCCESS\"); \r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"disabled": false,
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payload\" : \"<empty/>\",\r\n    \"requestType\": \"xml\",\r\n    \"responseType\": \"xml\",\r\n    \"properties\": [\r\n    \t{\r\n    \t\t\"name\":\"uri.var.number1\",\r\n    \t\t\"value\":\"1\",\r\n    \t\t\"type\": \"STRING\"\r\n    \t},\r\n    \t{\r\n    \t\t\"name\":\"uri.var.number2\",\r\n    \t\t\"value\":\"2\",\r\n    \t\t\"type\": \"STRING\"\r\n    \t}\r\n    ],\r\n    \"sequences\": [\r\n        \"UnitTestExample_Validation_Sequence\"\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8280/unittest/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"unittest",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ValidationSequenceTest_Failure",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c9497f78-0b67-4daa-bf3d-42ddaa68bef0",
+						"exec": [
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"VALIDATION_RESULT is FAILURE\", function () {\r",
+							"    json = pm.response.json();\r",
+							"    var prop = json.properties.find(prop => prop.name == 'VALIDATION_RESULT' && prop.scope == 'default');\r",
+							"    pm.expect(prop.value).to.equal(\"FAILURE\"); \r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"disabled": false,
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payload\" : \"<empty />\",\r\n    \"requestType\": \"xml\",\r\n    \"responseType\": \"xml\",\r\n    \"properties\": [\r\n    \t{\r\n    \t\t\"name\":\"uri.var.number1\",\r\n    \t\t\"value\":\"A\",\r\n    \t\t\"type\": \"STRING\"\r\n    \t},\r\n    \t{\r\n    \t\t\"name\":\"uri.var.number2\",\r\n    \t\t\"value\":\"2\",\r\n    \t\t\"type\": \"STRING\"\r\n    \t}\r\n    ],\r\n    \"sequences\": [\r\n        \"UnitTestExample_Validation_Sequence\"\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8280/unittest/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"unittest",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BuildFailureResponseTest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c9497f78-0b67-4daa-bf3d-42ddaa68bef0",
+						"exec": [
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"errorMessage should be ValidationError\", function () {\r",
+							"    json = pm.response.json();\r",
+							"    resultPayload = JSON.parse(json.payload);\r",
+							"    pm.expect(resultPayload.errorMessage).to.equal(\"Validation Error\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"disabled": false,
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payload\" : \"<empty />\",\r\n    \"requestType\": \"xml\",\r\n    \"responseType\": \"json\",\r\n    \"properties\": [\r\n    \t{\r\n    \t\t\"name\":\"VAL_ERROR_MESSAGE\",\r\n    \t\t\"value\":\"Validation Error\",\r\n    \t\t\"type\": \"STRING\"\r\n    \t}\r\n    ],\r\n    \"sequences\": [\r\n        \"UnitTestExample_BuildFailureResponse_Sequence\"\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8280/unittest/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"unittest",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BuildRequestPayloadTest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c9497f78-0b67-4daa-bf3d-42ddaa68bef0",
+						"exec": [
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"XML response should have all fields populated\", function () {\r",
+							"    json = pm.response.json();\r",
+							"    xmlJson = xml2Json(json.payload);\r",
+							"    console.log(xmlJson);\r",
+							"    var intA = xmlJson.Add.intA;\r",
+							"    var intB = xmlJson.Add.intB;\r",
+							"    \r",
+							"    pm.expect(intA).to.equal(\"10\");\r",
+							"    pm.expect(intB).to.equal(\"20\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"disabled": false,
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payload\" : \"<empty />\",\r\n    \"requestType\": \"xml\",\r\n    \"responseType\": \"xml\",\r\n    \"properties\": [\r\n    \t{\r\n    \t\t\"name\":\"number1_value\",\r\n    \t\t\"value\":\"10\",\r\n    \t\t\"type\": \"STRING\"\r\n    \t},\r\n    \t{\r\n    \t\t\"name\":\"number2_value\",\r\n    \t\t\"value\":\"20\",\r\n    \t\t\"type\": \"STRING\"\r\n    \t}\r\n    ],\r\n    \"sequences\": [\r\n        \"UnitTestExample_BuildRequestPayload_Sequence\"\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8280/unittest/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"unittest",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SendRequestSequenceTest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c9497f78-0b67-4daa-bf3d-42ddaa68bef0",
+						"exec": [
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"XML response should have all fields populated\", function () {\r",
+							"    json = pm.response.json();\r",
+							"    xmlJson = xml2Json(json.payload);\r",
+							"    console.log(xmlJson);\r",
+							"    var sumResult = xmlJson[\"soap:Envelope\"][\"soap:Body\"].AddResponse.AddResult;\r",
+							"    \r",
+							"    pm.expect(sumResult).to.equal(\"30\");\r",
+							"    \r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"disabled": false,
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payload\" : \"<Add xmlns=\\\"http://tempuri.org/\\\"><intA>10</intA><intB>20</intB></Add>\",\r\n    \"requestType\": \"xml\",\r\n    \"responseType\": \"xml\",\r\n    \"properties\": [],\r\n    \"sequences\": [\r\n        \"UnitTestExample_SendRequest_Sequence\"\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8280/unittest/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"unittest",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BuildResponsePayloadSequenceTest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c9497f78-0b67-4daa-bf3d-42ddaa68bef0",
+						"exec": [
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response payload should have the result equals to 30\", function () {\r",
+							"    json = pm.response.json();\r",
+							"    payload = JSON.parse(json.payload);\r",
+							"    pm.expect(payload.result).to.equal(30);\r",
+							"    \r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"disabled": false,
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payload\" : \"<AddResponse xmlns=\\\"http://tempuri.org/\\\"><AddResult>30</AddResult></AddResponse>\",\r\n    \"requestType\": \"xml\",\r\n    \"responseType\": \"json\",\r\n    \"properties\": [],\r\n    \"sequences\": [\r\n        \"UnitTestExample_BuildResponsePayload_Sequence\"\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8280/unittest/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"unittest",
+						"test"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

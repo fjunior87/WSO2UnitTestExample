@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="CalculatorAPI" groupId="com.xicojunior.WSO2UnitTestExampleApp.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/CalculatorAPI.xml</file>
+    </artifact>
+    <artifact name="SOAPCalculator_EP" groupId="com.xicojunior.WSO2UnitTestExampleApp.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/SOAPCalculator_EP.xml</file>
+    </artifact>
+    <artifact name="UnitTestExample_Validation_Sequence" groupId="com.xicojunior.WSO2UnitTestExampleApp.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/UnitTestExample_Validation_Sequence.xml</file>
+    </artifact>
+    <artifact name="UnitTestExample_BuildRequestPayload_Sequence" groupId="com.xicojunior.WSO2UnitTestExampleApp.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/UnitTestExample_BuildRequestPayload_Sequence.xml</file>
+    </artifact>
+    <artifact name="UnitTestExample_BuildFailureResponse_Sequence" groupId="com.xicojunior.WSO2UnitTestExampleApp.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/UnitTestExample_BuildFailureResponse_Sequence.xml</file>
+    </artifact>
+    <artifact name="UnitTestExample_SendRequest_Sequence" groupId="com.xicojunior.WSO2UnitTestExampleApp.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/UnitTestExample_SendRequest_Sequence.xml</file>
+    </artifact>
+    <artifact name="UnitTestExample_BuildResponsePayload_Sequence" groupId="com.xicojunior.WSO2UnitTestExampleApp.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/UnitTestExample_BuildResponsePayload_Sequence.xml</file>
+    </artifact>
+</artifacts>
